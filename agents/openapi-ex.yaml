@@ -1,0 +1,77 @@
+openapi: 3.0.3
+
+info:
+  title: CloudFormationManager
+  description: |
+    This is a sample CloudFormation Manager function for Amazon Bedrock based on the OpenAPI 3.0 specification. You can find out more
+  termsOfService: https://stratusgrid.com
+  contact:
+    email: trevor.sullivan@stratusgrid.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+
+externalDocs:
+  description: Learn more about StratusGrid
+  url: https://stratusgrid.com
+
+tags:
+  - name: cfn
+    description: CloudFormation
+    externalDocs:
+      description: Find out more about AWS CloudFormation from AWS documentation.
+      url: http://docs.aws.amazon.com
+
+paths:
+  /cfn/{stackName}/addTag:
+    post:
+      summary: Adds a new tag key-value pair to an existing CloudFormation stack
+      description: Adds a new tag key-value pair to an existing CloudFormation stack
+      operationId: addTagCloudFormationStack
+      parameters:
+        - name: stackName
+          in: path
+          description: The CloudFormation stack name to be deleted.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation; returned CloudFormation stacks
+
+  /cfn/:
+    get:
+      tags:
+        - cfn
+      summary: Lists CloudFormation stacks in the current AWS region.
+      description: Lists all the AWS CloudFormation stacks in the current AWS region.
+      operationId: listCloudFormationStack
+      parameters: []
+      responses:
+        '200':
+          description: Successful operation
+
+  /cfn/{stackName}:
+    delete:
+      tags:
+        - cfn
+      summary: Delete CloudFormation Stack
+      description: Deletes a CloudFormation stack by its name.
+      operationId: deleteCloudFormationStack
+      parameters:
+        - name: stackName
+          in: path
+          description: The CloudFormation stack name to be deleted.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Not Found
+        '422':
+          description: Validation exception
