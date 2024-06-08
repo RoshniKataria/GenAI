@@ -1,0 +1,8 @@
+Mapping templates (1)
+application/json
+Integration request
+{
+    "prompt" : "$input.params('prompt')"
+}
+
+application/json
